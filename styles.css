@@ -2,49 +2,53 @@
    CUSTOMISABLE VARIABLES
    =========================== */
    :root {
-    --logo-size: 262px;      /* header logo (square) */
-    --logo-offset: -76px;   /* move header logo up/down */
+    /* Element sizes */
+    --logo-size: 240px;
+    --description-width: 480px;
+    --icon-width: 180px;
+    --player-width: 660px;
+    --player-height: 450px;
   
-    --icon-width: 180px;     /* width of each badge icon */
-    --icons-offset: 0px;     /* move icons block up/down */
-    --icons-gap: 8px;        /* vertical space between icons */
+    /* Vertical offsets (fine-grained control) */
+    --logo-offset: 0px;
+    --description-offset: 0px;
+    --links-offset: 0px;
+    --player-offset: 0px;
   
-    --description-offset: -40px; /* move description paragraph up/down */
+    /* Spacers between sections */
+    --space-a: 10px;   /* logo → description */
+    --space-b: 40px;   /* description → links */
+    --space-c: 30px;   /* links → player */
+  
+    /* Icon spacing */
+    --icons-gap: 8px;
   }
   
   /* ===========================
-     GLOBAL STYLES
+     GLOBAL
      =========================== */
-     body,
-     html {
-       margin: 0;
-       padding: 0;
-       font-family: "Poppins", Arial, sans-serif;
-       background: #f5eddb;
-       color: #333;
-     }
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f5eddb;
+    color: #333;
+  }
   
-  /* MAIN CONTAINER — FULLY CENTRED */
+  /* ===========================
+     LAYOUT
+     =========================== */
   .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    min-height: 100vh;
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  
     padding: 40px 20px;
-    position: relative;
+    text-align: center;
   }
   
   /* ===========================
      HEADER LOGO
      =========================== */
   .logo-header {
-    margin-bottom: 20px;
     transform: translateY(var(--logo-offset));
   }
   
@@ -52,58 +56,67 @@
     width: var(--logo-size);
     height: var(--logo-size);
     object-fit: contain;
-    display: block;
   }
   
   /* ===========================
-     DESCRIPTION TEXT
+     SPACERS
+     =========================== */
+  .spacer-a { height: var(--space-a); }
+  .spacer-b { height: var(--space-b); }
+  .spacer-c { height: var(--space-c); }
+  
+  /* ===========================
+     DESCRIPTION
      =========================== */
   .description {
-    max-width: 480px;
-    font-size: 16px;
-    line-height: 1.45;
-    color: #444;
-    margin: -54px 0 0px 0;
+    max-width: var(--description-width);
+    margin: 0 auto;
     transform: translateY(var(--description-offset));
   }
   
   /* ===========================
-     ICON LIST
+     LINKS
      =========================== */
   .links {
-    width: 100%;
-    transform: translateY(var(--icons-offset));
+    transform: translateY(var(--links-offset));
   }
   
   .link-list {
     list-style: none;
     padding: 0;
     margin: 0;
-  
+    gap: var(--icons-gap);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--icons-gap);
   }
   
-  .link-list li {
-    display: block;
-    width: auto;
-  }
-  
-  .link-list a {
-    display: inline-block;
-  }
+  .link-list li { display: block; }
   
   .link-list a img {
     width: var(--icon-width);
     height: auto;
     object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    transition: transform 0.15s ease-out;
+    transition: 0.15s ease-out;
   }
   
   .link-list a:hover img {
     transform: scale(1.06);
+  }
+  
+  /* ===========================
+     APPLE PLAYER
+     =========================== */
+  .apple-embed {
+    display: flex;
+    justify-content: center;
+    transform: translateY(var(--player-offset));
+  }
+  
+  .apple-embed iframe {
+    width: 75%;
+    max-width: var(--player-width);
+    height: var(--player-height);
+    border: 0;
+    border-radius: 12px;
   }
